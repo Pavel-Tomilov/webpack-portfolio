@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Developer</title>
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <!-- <link rel="stylesheet" href="styles/normalize.css"> -->
+  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+  <!-- <script type="module" defer src="js/main.js"></script> -->
+  <script>
+    // Применяем тему ДО загрузки DOM
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme) {
+        document.documentElement.classList.toggle('dark-theme', savedTheme === 'dark');
+      } else {
+        document.documentElement.classList.toggle('dark-theme', systemPrefersDark);
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+
+  <label class="switch">
+    <input class="switch__input" type="checkbox" role="switch">
+    <svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+      <g fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round">
+        <circle cx="6" cy="6" r="2" />
+        <g stroke-dasharray="1.5 1.5">
+          <polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
+          <polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
+        </g>
+      </g>
+    </svg>
+    <svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+      <g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
+        <path
+          d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z" />
+      </g>
+    </svg>
+    <span class="switch__sr">Dark Mode</span>
+  </label>
+  <header>
+    <div class="container header__container">
+      <div class="nav__logo">Frontend Developer</div>
+      <!-- Бургер-иконка -->
+      <div class="burger-container">
+        <div class="burger-menu">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+      </div>
+
+      <!-- Затемнение фона -->
+      <div class="overlay"></div>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link link-reset" href="#about">Обо мне</a></li>
+          <li class="nav__item"><a class="nav__link link-reset" href="#projects">Проекты</a></li>
+          <li class="nav__item"><a class="nav__link link-reset" href="#skills">Ключевые навыки</a></li>
+          <li class="nav__item"><a class="nav__link link-reset" href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section id="about">
+    <div class="container">
+      <h2>Обо мне</h2>
+      <div class="about__container">
+        <p class="about__name">Привет!</p>
+        <p class="about__name">Я — Павел Томилов, фронтенд-разработчик.</p>
+        <p class="about__spec">Специализируюсь на создании адаптивных и кросс-браузерных веб-сайтов с
+          использованием HTML, CSS и JavaScript. Верстаю так, чтобы сайты были доступны даже на древних смартфонах.
+        </p>
+        <!-- <p class="about__descr">Хотите обсудить проект?</p>
+        <button class="btn-reset about__button" id="btn">Напишите мне!</button> -->
+        <!-- Модальное окно (изначально скрыто) -->
+
+        <!-- <div class="modal" id="modal">
+
+          <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <form class="form__body" id="form">
+              <p class="form__title">Можете задать ваш вопрос</p>
+              <div class="input-group">
+                <input type="text" class="input-field _req _email" id="name" placeholder=" ">
+                <label for="name" class="input-label required-field">Имя</label>
+                <div id="nameError" class="error"></div>
+              </div>
+              <div class="input-group">
+                <input class="input-field _req _email" id="email" placeholder=" ">
+                <label for="email" class="input-label required-field">Email</label>
+                <div id="emailError" class="error"></div>
+              </div>
+              <div class="input-group">
+                <textarea class="input-field required-field" name="text" id="message" type="text"
+                  placeholder=" "></textarea>
+                <label for="message" class="input-label">Ваш вопрос</label>
+                <div id="messageError" class="error"></div>
+              </div>
+              <button class="btn-reset button" name="submit" type="submit">Отправить</button>
+              <p class="form_notice">Ваши данные конфиденциальны</p>
+            </form>
+            <div class="loading" id="loading">
+              <div class="loader"></div>
+              <div class="loading-text">Отправка данных...</div>
+              <div class="success-message">
+                ✅<br>
+                <p class="success-text">Сообщение успешно отправлено!</p>
+                <p class="success-text">Я свяжусь с вами в ближайшее время.</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="projects__title">Проекты</h2>
+      <div class="container__card">
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/vk-marusia/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__marusia">
+                  <!-- <img src="./images/marusia.jpg" alt="VK Маруся" class="card__icon"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Разработал онлайн-платформу «VK Маруся», которая позволяет пользователям
+                    находить и оценивать фильмы</p>
+                  <h3 class="card-title">«VK Маруся»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/table-student/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__student-table">
+                  <!-- <img src="./images/table-student.jpg" alt="Table student" class="card__icon"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Создал панель управления студентами на чистом JS</p>
+                  <h3 class="card-title">«Student table»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/final-weblayout/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__blanchard">
+                  <!-- <img src="./images/blanchard.jpg" alt="Blanchard" class="card__icon"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Разработал адаптивный сайт для художественной галереи с
+                    использованием HTML, CSS.</p>
+                  <h3 class="card-title">«Blanchard»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/skillbox/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__skillbox">
+                  <!-- <img src="./images/skillbox.jpg" alt="Skillbox" class="card__icon"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Создал одностраничный сайт использую css-grid.</p>
+                  <h3 class="card-title">«Skillbox»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/high-pass/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__high">
+                  <!-- <img class="card__icon" src="./images/high-pass.jpg" alt="HIGH PASS"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Разработал адаптивный сайт используя gulp-сборку, препроцессор SASS и Grid.
+                  </p>
+                  <h3 class="card-title">«HIGH PASS»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a class="link-reset" target="_blank" href="https://pavel-tomilov.github.io/evklid/">
+            <div class="card">
+              <div class="face face1">
+                <div class="content card__evklid">
+                  <!-- <img class="card__icon" src="./images/evklid.jpg" alt="EVKLID"> -->
+                </div>
+              </div>
+              <div class="face face2">
+                <div class="content">
+                  <p class="content__descr">Создал адаптивный, кроссбраузерный сайт, с возможностью пользоваться с
+                    клавиатуры и с помощью скринридера .</p>
+                  <h3 class="card-title">«EVKLID»</h3>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="skills">
+    <h2>Ключевые навыки</h2>
+    <div class="container skills__container">
+      <ul class="list-reset list__skills">
+        <li>&bull; HTML5&nbsp;&mdash; Семантическая разметка, структура страниц, основы SEO.</li>
+        <li>&bull; CSS3&nbsp;&mdash; Flexbox, Grid, анимации, медиазапросы для адаптивной верстки.</li>
+        <li>&bull; JavaScript (ES6)&nbsp;&mdash; Основы программирования, DOM-манипуляции, интерактивные
+          элементы.</li>
+        <li>&bull; Git&nbsp;&mdash; Контроль версий, работа с&nbsp;GitHub, создание pull-реквестов.</li>
+        <li>&bull; Адаптивная верстка (Flexbox, Grid)</li>
+        <li>&bull; БЭМ&nbsp;&mdash; Методология наименования классов для чистой и&nbsp;поддерживаемой разметки.
+        </li>
+        <li>&bull; Sass/SCSS&nbsp;&mdash; Использование препроцессоров для упрощения работы с&nbsp;CSS.</li>
+        <li>&bull; Адаптивная верстка&nbsp;&mdash; Создание сайтов, которые корректно отображаются
+          на&nbsp;мобильных и&nbsp;десктопных устройствах.</li>
+        <li>&bull; Работа с макетами Figma</li>
+      </ul>
+    </div>
+  </section>
+</body>
+<footer id="contact">
+  <div class="container">
+    <h2>Контакты</h2>
+    <p>Email: <a class="link" href="mailto:pasha.tomiloff@yandex.ru">pasha.tomiloff@yandex.ru</a></p>
+    <p>Телефон: +7 (981) 965-5907</p>
+    <p>GitHub: <a class="link" href="https://github.com/Pavel-Tomilov" target="_blank">github.com/Pavel-Tomilov</a></p>
+  </div>
+</footer>
+
+</html>
