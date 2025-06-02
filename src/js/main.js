@@ -3,7 +3,6 @@ import { initThemeSwitcher } from './modules/themeSwitcher.js';
 import { initBurgerMenu } from './modules/burgerMenu.js';
 import { initModal } from './modules/modal.js';
 import { initFormSubmit } from './modules/formSubmit.js';
-import '../styles/normalize.css'
 import '../styles/styles.css'
 
 
