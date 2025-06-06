@@ -6,6 +6,11 @@
   "start": "cross-env NODE_ENV=development webpack serve  --open"
  },
  "devDependencies": {
+  "@babel/core": "^7.27.4",
+  "@babel/preset-env": "^7.27.2",
+  "@babel/preset-react": "^7.27.1",
+  "@babel/preset-typescript": "^7.27.1",
+  "babel-loader": "^10.0.0",
   "clean-webpack-plugin": "^4.0.0",
   "copy-webpack-plugin": "^13.0.0",
   "cross-env": "^7.0.3",
@@ -26,6 +31,8 @@
   "webpack-dev-server": "^5.2.2"
  },
  "dependencies": {
-  "normalize.css": "^8.0.1"
+  "normalize.css": "^8.0.1",
+  "react": "^19.1.0",
+  "react-dom": "^19.1.0"
  }
 }

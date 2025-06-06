@@ -44,7 +44,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: isDev ? 'development' : 'production', // Динамически меняем mode
   entry: {
-    main: './js/main.js'
+    main: './js/main.jsx'
   },
   output: {
     filename: filename('js'),
@@ -119,7 +119,37 @@ module.exports = {
       {
         test: /\.csv$/,
         use: ['csv-loader']
-      }
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env', "@babel/preset-typescript"]
+          }
+        }
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env', "@babel/preset-react"]
+          }
+        }
+      },
     ]
   }
 }
